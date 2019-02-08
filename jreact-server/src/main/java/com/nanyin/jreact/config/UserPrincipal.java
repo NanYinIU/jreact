@@ -19,19 +19,18 @@ public class UserPrincipal implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
     private Map<String, Object> attributes;
 
-    public UserPrincipal(long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
+    public UserPrincipal(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;
         this.password = password;
         this.authorities = authorities;
     }
+
 
     public static UserPrincipal create(User user) {
         List<GrantedAuthority> authorities = Collections.
                 singletonList(new SimpleGrantedAuthority("ROLE_USER"));
 
         return new UserPrincipal(
-                user.getId(),
                 user.getUsername(),
                 user.getPassword(),
                 authorities

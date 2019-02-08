@@ -9,13 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 验证失败返回
+ */
 @Component
 public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest httpServletRequest,
                          HttpServletResponse httpServletResponse,
                          AuthenticationException e) throws IOException, ServletException {
-        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED,
-                "Unauthorized");
+        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
+        httpServletResponse.setStatus(401);
     }
 }
