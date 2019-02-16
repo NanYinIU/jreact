@@ -14,9 +14,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
       User findUserByUsername(String name);
 
-      @Override
-      @PreAuthorize("@UserRepository.findById(#id).username == authentication?.name")
-      void deleteById(@Param("id") Long id);
+//      @Override
+//      @PreAuthorize("@UserRepository.findById(#id).username == authentication?.name")
+//      void deleteById(@Param("id") Long id);
 }
 
 

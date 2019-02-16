@@ -10,7 +10,7 @@ public interface UserService {
 
     String login(String username,String password);
 
-    String register(User user);
+    Boolean register(User user);
 
 
 }

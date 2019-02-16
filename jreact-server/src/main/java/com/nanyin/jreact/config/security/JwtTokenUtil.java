@@ -13,10 +13,11 @@ import java.util.Map;
 
 @Component
 public class JwtTokenUtil {
+
     /**
      * 密钥
      */
-    private final String secret = "jreact";
+    private final String secret = JwtProps.SECRET.getName();
 
     /**
      * 从数据声明生成令牌
@@ -55,7 +56,7 @@ public class JwtTokenUtil {
         Map<String, Object> claims = new HashMap<>(2);
         claims.put("sub", userDetails.getUsername());
         claims.put("created", new Date());
-        return generateToken(claims);
+        return JwtProps.TOKEN_HEAD.getName()+generateToken(claims);
     }
 
     /**

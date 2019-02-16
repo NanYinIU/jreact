@@ -50,8 +50,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/user/register", "/user/login").permitAll()
+                .antMatchers("/user/register", "/user/login","/session/invalid","/user/validateUsername").permitAll()
                 .anyRequest().authenticated();
+//                .and()
+//                .sessionManagement().invalidSessionUrl("/user/session/invalid");
 //                .and()
 //                .formLogin()
 //                .loginPage("/user/login")
@@ -59,6 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
 //                .logout()
 //                .permitAll();
+
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         http.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).accessDeniedHandler(restAccessDeniedHandler);
 

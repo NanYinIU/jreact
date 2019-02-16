@@ -55,10 +55,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String register(User user) {
+    public Boolean register(User user) {
         String username = user.getUsername();
         if (userRepository.findUserByUsername(username) != null) {
-            return "用户已存在";
+            return false;
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String rawPassword = user.getPassword();
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
         roles.add(new Role("ROLE_USER"));
         user.setRoles(roles);
         userRepository.save(user);
-        return "success";
+        return true;
     }
 
 
