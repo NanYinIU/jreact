@@ -17,17 +17,20 @@ export const styles = theme => ({
     border: "1px",
     borderRadius: "3px",
     padding: "10px 0",
-    transition: "all 150ms ease 0s",
     minHeight: "50px",
     display: "block",
     transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
     }),
-    //zIndex: theme.zIndex.drawer + 1,
   },
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
+    appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   toolbarIcon: {
     display: 'flex',
@@ -35,21 +38,6 @@ export const styles = theme => ({
     justifyContent: 'flex',
     padding: '0 8px',
     ...theme.mixins.toolbar,
-  },
-  /*appBar: {*/
-    //zIndex: theme.zIndex.drawer + 1,
-    //transition: theme.transitions.create(['width', 'margin'], {
-      //easing: theme.transitions.easing.sharp,
-      //duration: theme.transitions.duration.leavingScreen,
-    //}),
-  /*},*/
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
   },
   menuButton: {
     marginLeft: 12,

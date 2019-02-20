@@ -20,7 +20,7 @@ function login(username, password) {
                 error => {
             dispatch(failure(error));
                     //dispatch(alertActions.error(error));
-                    console.log("发生错误！！");
+                    //console.log("发生错误！！");
                 }
             );
     };

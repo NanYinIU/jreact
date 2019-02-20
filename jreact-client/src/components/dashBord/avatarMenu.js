@@ -1,13 +1,14 @@
 import React from 'react'
 
-import { Button,Popper,MenuItem,MenuList,ClickAwayListener,Grow,Paper,IconButton,Divider,Grid } from '@material-ui/core';
+import {Popper,MenuItem,MenuList,ClickAwayListener,Grow,Paper,IconButton} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Settings from '@material-ui/icons/Settings';
+import ExitToApp from '@material-ui/icons/ExitToApp';
+import Person from '@material-ui/icons/Person';
 import Typography from '@material-ui/core/Typography';
 import {userActions} from '../../actions/user.action'
-import { styles } from "../../pages/dashBord/dashBord.css";
+import { styles } from "../../assets/components/dashBord/dashBord.css";
 class AvatarMenu extends React.Component{
 
     constructor(props){
@@ -61,17 +62,17 @@ class AvatarMenu extends React.Component{
                   <ClickAwayListener onClickAway={this.handleClose}>
                     <MenuList>
                     <MenuItem onClick={this.handleClose}>
-                        <Typography component='h2'>
+                        <Person/>&nbsp;<Typography component='h3'>
                            个人中心
                         </Typography>
                      </MenuItem>
                      <MenuItem onClick={this.handleClose}>
-                        <Settings/>&nbsp;<Typography component='h2'>
+                        <Settings/>&nbsp;<Typography component='h3'>
                             个人设置
                         </Typography>
                     </MenuItem>
                      <MenuItem onClick={this.handleLogOut}>
-                         <Typography>
+                         <ExitToApp/>&nbsp;<Typography component='h3'>
                          登   出
                          </Typography>
                      </MenuItem>

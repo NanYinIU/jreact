@@ -11,16 +11,10 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Avatar from '@material-ui/core/Avatar';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import SimpleTable from './simpleTable';
-
-import {drawerWidth,styles} from './dashBord.css.js'
-import AvatarMenu from '../../components/dashBord/avatarMenu'
-import { userActions } from '../../actions/user.action'
+import MyToolbar from "../../components/dashBord/myToolbar";
+import {styles} from '../../assets/components/dashBord/dashBord.css'
 import { connect } from "react-redux";
 class Dashboard extends React.Component {
 
@@ -47,26 +41,7 @@ class Dashboard extends React.Component {
           position="absolute"
           className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
         >
-          <Toolbar className={classes.toolbar}>
-            <Typography
-              component="h1"
-              variant="h6"
-              //color="inherit"
-              noWrap
-              className={classes.title}
-            >
-              Dashboard
-            </Typography>
-            <IconButton >
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-
-            {/* 头像下面下拉 */}
-            <AvatarMenu></AvatarMenu>
-
-          </Toolbar>
+        <MyToolbar name={"测试"}></MyToolbar>
         </AppBar>
 
         <Drawer
@@ -77,9 +52,9 @@ class Dashboard extends React.Component {
           open={this.state.open}
         >
           <div className={classes.toolbarIcon}>
-          <Typography component='h1'>
-             Hello World
-          </Typography>
+            <Typography component='h1'>
+            这里是商标和名称
+            </Typography>
           </div>
           <Divider />
           <List>{mainListItems}</List>

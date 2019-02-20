@@ -21,7 +21,6 @@ function login(username, password) {
             password:password
         }
     }).then(handleResponse).then(user => {
-        console.log(user);
         localStorage.setItem('user',user)
     })
 }
@@ -74,14 +73,9 @@ function update(user) {
 }
 
 function handleResponse(response) {
-        console.log(response.data);
-        console.log(response);
-        /*
-         *const data =JSON.parse(response.data);
-         */
-        if (!response.status == 200) {
+        if (!response.status === 200) {
             if (response.status === 401) {
-                // auto logout if 401 response returned fro,m api
+            // auto logout if 401 response returned fro,m api
                 logout();
                 window.location.reload(true);
             }
@@ -89,6 +83,5 @@ function handleResponse(response) {
             const error = (response.data && response.data.message) || response.statusText;
             return Promise.reject(error);
         }
-        console.log(response.data);
         return response.data;
 }

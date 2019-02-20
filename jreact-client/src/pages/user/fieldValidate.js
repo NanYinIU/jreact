@@ -1,7 +1,4 @@
 import axios from 'axios'
-import { SubmissionError } from 'redux-form'
-import history from '../../history'
-import { userActions } from "../../actions/user.action";
 
 export const asyncValidate = (values/*, dispatch */) => {
     return axios({

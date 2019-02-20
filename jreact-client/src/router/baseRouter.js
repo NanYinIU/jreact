@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch, Redirect ,NavLink} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import React from 'react'
 import Login from '../pages/user/login'
 import DashBord from '../pages/dashBord/dashBord'

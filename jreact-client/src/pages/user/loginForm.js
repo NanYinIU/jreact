@@ -6,7 +6,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
-import styles from './login.css.js'
+import styles from '../../assets/components/login/login.css'
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 import {asyncValidate,validate,/*submit*/} from './fieldValidate'
@@ -21,8 +21,6 @@ const RenderField = ({ input, label, type, meta: { asyncValidating,touched, erro
   </div>
 )
 
-
-
 class LoginForm extends Component {
 
   constructor(props){
@@ -30,10 +28,9 @@ class LoginForm extends Component {
         this.state={
         }
     }
-    submit=(values)=> {
-        return this.props.dispatch
-        (userActions.login(values.username,values.password))
-    }
+  submit=(values)=> {
+    return this.props.dispatch(userActions.login(values.username,values.password))
+  }
   render() {
     const {classes,handleSubmit} = this.props;
     return (
