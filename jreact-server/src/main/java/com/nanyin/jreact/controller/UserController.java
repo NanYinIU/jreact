@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    private static final String FAILURE = "failure";
     @Autowired
     UserService userService;
 

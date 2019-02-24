@@ -1,21 +1,19 @@
 import { Route, Switch } from 'react-router-dom';
 import React from 'react'
 import Login from '../pages/user/login'
-import DashBord from '../pages/dashBord/dashBord'
+import DashBoard from '../pages/dashBord/DashboardPage'
+// import FormPage from '../pages/personal/FormPage'
 import { PrivateRoute} from "./privateRoute";
-
+import App from "../pages/App";
+import NotFoundPage from "../pages/error/NotFoundPage";
 class BaseRouter extends React.Component{
     render(){
       return (
-      <div>
-        {/* switch 中只会匹配到一个url的，只要匹配到就直接返回 */}
-        <Switch>
-             <div className="container">
-                <PrivateRoute  path="/" exact component={DashBord} />
-                <Route path="/login" component={Login} />
-            </div>
-        </Switch>
-        </div>)
-    }
+      <Switch>
+        <Route path="login" component={Login}/>
+        <PrivateRoute  component={App}>
+        </PrivateRoute>
+      </Switch>
+    )}
 }
 export default BaseRouter;

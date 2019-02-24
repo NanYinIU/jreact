@@ -1,7 +1,6 @@
 import {
     authHeader
 } from '../helpers/authHeader';
-import axios from 'axios'
 
 export const userService = {
     login,
@@ -13,16 +12,27 @@ export const userService = {
 };
 
 function login(username, password) {
-    return axios({
-        method:'get',
-        url:'/user/login',
-        params:{
-            username:username,
-            password:password
-        }
-    }).then(handleResponse).then(user => {
-        localStorage.setItem('user',user)
-    })
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username,
+            password
+        })
+    };
+    console.log("test");
+    return fetch(`/user/login`, requestOptions)
+        .then(handleResponse)
+        .then(user => {
+            console.log(user);
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('user', JSON.stringify(user));
+
+            return user;
+        });
+    
 }
 
 function logout() {
@@ -73,15 +83,19 @@ function update(user) {
 }
 
 function handleResponse(response) {
-        if (!response.status === 200) {
+    return response.text().then(text => {
+        const data = text && JSON.parse(text);
+        if (!response.ok) {
             if (response.status === 401) {
-            // auto logout if 401 response returned fro,m api
+                // auto logout if 401 response returned from api
                 logout();
                 window.location.reload(true);
             }
 
-            const error = (response.data && response.data.message) || response.statusText;
+            const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
-        return response.data;
+
+        return data;
+    });
 }
