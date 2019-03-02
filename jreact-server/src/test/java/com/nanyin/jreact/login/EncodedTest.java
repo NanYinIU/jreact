@@ -12,8 +12,4 @@ public class EncodedTest {
         String after = encoder.encode(before);
         System.out.println(after);
     }
-    @Test
-    public void enumTest(){
-        System.out.println(JwtProps.SECRET.getName());
-    }
 }

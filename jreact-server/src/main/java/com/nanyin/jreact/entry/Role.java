@@ -1,5 +1,6 @@
 package com.nanyin.jreact.entry;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -23,6 +24,8 @@ public class Role implements GrantedAuthority {
     @Column(name = "comment",length = 255)
     private String comment;
 
+    // 在有循环调用的地方使用JsonIgnore来控制输出json
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 

@@ -1,6 +1,7 @@
 import {
     authHeader
 } from '../helpers/authHeader';
+import axios from 'axios'
 
 export const userService = {
     login,
@@ -12,26 +13,20 @@ export const userService = {
 };
 
 function login(username, password) {
-    const requestOptions = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            username,
-            password
-        })
-    };
-    console.log("test");
-    return fetch(`/user/login`, requestOptions)
-        .then(handleResponse)
-        .then(user => {
-            console.log(user);
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
-
-            return user;
-        });
+    return axios({
+        method: 'get',
+        url: '/user/login',
+        params: {
+          username: username,
+          password:password
+        }
+      }).then(function(response){
+        console.log(response);
+        var user  = response.data.user;
+        console.log(user);
+        localStorage.setItem('user', JSON.stringify(user));
+        return user;
+      });
     
 }
 

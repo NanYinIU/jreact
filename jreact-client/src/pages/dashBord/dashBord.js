@@ -9,7 +9,6 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import { mainListItems, secondaryListItems } from './listItems';
-import SimpleTable from './simpleTable';
 import MyToolbar from "../../components/dashBord/myToolbar";
 import {styles} from '../../assets/components/dashBord/dashBord.css'
 import { connect } from "react-redux";
@@ -69,7 +68,7 @@ class Dashboard extends React.Component {
             Products
           </Typography>
           <div className={classes.tableContainer}>
-            <SimpleTable />
+            {/* <SimpleTable /> */}
           </div>
         </main>
       </div>
