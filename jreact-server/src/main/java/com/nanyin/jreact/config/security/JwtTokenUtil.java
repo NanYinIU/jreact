@@ -11,6 +11,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 理解jwt：
+ * json web token是一种标准
+ * 主要由三部分构成：header，payload,signature 通常的结构是 xxx.yyy.zzz使用.来分割
+ * 这里用到了jjwt来实现jwt标准 https://github.com/jwtk/jjwt
+ * 使用setHeaderParameter方法来设置header 或者 Header header = Jwts.header(); setHeader(header)
+ * setclaim来设置body一些基本信息
+ * 使用signWith(key).compact()来实现续后的签名
+ */
 @Component
 public class JwtTokenUtil {
 
@@ -94,7 +103,7 @@ public class JwtTokenUtil {
 
     /**
      * 刷新令牌
-     *
+     * 如果超出过期时间使用刷新来重新设置过期时间
      * @param token 原令牌
      * @return 新令牌
      */

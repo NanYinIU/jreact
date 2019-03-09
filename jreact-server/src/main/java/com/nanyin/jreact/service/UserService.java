@@ -12,5 +12,6 @@ public interface UserService {
 
     Boolean register(User user);
 
+    String findRoleString(String username);
 
 }

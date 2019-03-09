@@ -15,7 +15,8 @@ import java.util.List;
 @Entity
 @Data
 @ToString(exclude = "password")
-@Table(name = "user")
+@Table(name = "user",uniqueConstraints = {@UniqueConstraint(columnNames = "username")}
+,indexes = {@Index(columnList = "username")})
 public class User {
 
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
@@ -35,8 +36,8 @@ public class User {
         this.password = PASSWORD_ENCODER.encode(password);
     }
 
-    @OneToOne()
-    @JoinColumn(name = "person_id",nullable = false)
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "person_id",nullable = false,referencedColumnName = "id")
     private Person person;
 
     @ManyToMany(cascade = {

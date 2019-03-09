@@ -70,5 +70,10 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    @Override
+    public String findRoleString(String username) {
+        return userRepository.findRoleString(username);
+    }
+
 
 }

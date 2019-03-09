@@ -1,12 +1,10 @@
 package com.nanyin.jreact.entry;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 
 @Entity
@@ -34,5 +32,9 @@ public class Person {
 
     @Column(name = "head",length = 64)
     private String head;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "person")
+    private User user;
 
 }

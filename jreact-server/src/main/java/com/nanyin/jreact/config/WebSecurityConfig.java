@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/user/register", "/user/login","/session/invalid","/user/validateUsername").permitAll()
+                .antMatchers("/api/user/register", "/api/user/login","/session/invalid","/api/user/validateUsername","/api/user/currentUser").permitAll()
                 .anyRequest().authenticated();
 //                .and()
 //                .sessionManagement().invalidSessionUrl("/user/session/invalid");

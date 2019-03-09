@@ -8,8 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.ExecutionException;
+
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
     @Autowired
     UserService userService;
@@ -21,7 +23,8 @@ public class UserController {
             String token = userService.login(username, password);
             jsonObject.put("Authorization",token);
             jsonObject.put("success",true);
-            jsonObject.put("user",userService.findUserByUsername(username));
+            // 这里将人员的角色传到前端
+            jsonObject.put("role",userService.findRoleString(username));
             return ResponseEntity.ok().header("Authorization",token).body(jsonObject);
         }catch (Exception e){
             jsonObject.put("message","登录出现错误");
@@ -51,14 +54,14 @@ public class UserController {
         }
     }
 
-    @GetMapping(path = "/validateUsername")
-    public Object validateUsername(@RequestParam(name = "username") String username){
-            JSONObject jsonObject = new JSONObject();
+    @GetMapping(path = "/currentUser")
+    public Object currentUser(@RequestParam(name = "username")String username){
+        JSONObject jsonObject = new JSONObject();
         try{
             User user = userService.findUserByUsername(username);
-            if(user != null){
-//                jsonObject.put("user",user);
+            if(user !=null){
                 jsonObject.put("success",true);
+                jsonObject.put("user",user);
             }else{
                 jsonObject.put("success",false);
             }
@@ -67,5 +70,4 @@ public class UserController {
         }
         return jsonObject;
     }
-
 }
